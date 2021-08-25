@@ -9,7 +9,7 @@ const Signup = (props) => {
         event.preventDefault();
         fetch("http://localhost:3000/user/register", {
             method: 'POST',
-            body: JSON.stringify({user:{username:username, password: password}}),
+            body: JSON.stringify({user:{username:username, passwordhash: password}}),
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
