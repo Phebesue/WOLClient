@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sitebar from './home/Navbar';
 import Auth from './auth/Auth';
+import WorkoutIndex from './workouts/WorkoutIndex';
 
 
 function App() {
@@ -16,18 +17,25 @@ function App() {
   const updateToken = (newToken) => {
     localStorage.setItem('token', newToken);
     setSessionToken(newToken);
-    console.log(sessionToken);
+    console.log("sessionToken: ",newToken); //altered, different from modules
   }
 
   const clearToken = () => {
     localStorage.clear();
     setSessionToken('');
+    console.log("sessionToken: ",sessionToken); //added, not in modules
   }
+
+  const protectedViews = ()=> {
+    return(sessionToken === localStorage.getItem('token') ? <WorkoutIndex token={sessionToken}/>
+      :  <Auth updateToken={updateToken}/>) 
+  }
+  
   
   return (
     <div>   
       <Sitebar clickLogout={clearToken} /> 
-      <Auth updateToken={updateToken} />
+    {protectedViews()}
     </div>
   );
 }
