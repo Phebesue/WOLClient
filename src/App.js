@@ -24,11 +24,16 @@ function App() {
     setSessionToken('');
     console.log("sessionToken: ",sessionToken); //added, not in modules
   }
+
+  const protectedViews = () => {
+    return (sessionToken === localStorage.getItem('token') ? <WorkoutIndex token={sessionToken}/>
+    : <Auth updateToken={updateToken}/>)
+  }
   
   return (
     <div>   
       <Sitebar clickLogout={clearToken} /> 
-      <Auth updateToken={updateToken}/>
+      {protectedViews()}
     </div>
   );
 }
