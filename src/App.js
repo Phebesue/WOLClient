@@ -30,7 +30,6 @@ function App() {
     return (sessionToken === localStorage.getItem('token') ? <WorkoutIndex token={sessionToken}/>
     : <Auth updateToken={updateToken}/>)
   }
-
   return (
     <div>   
       <Sitebar clickLogout={clearToken} /> 
