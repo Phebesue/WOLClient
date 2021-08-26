@@ -31,12 +31,6 @@ function App() {
     : <Auth updateToken={updateToken}/>)
 
   }
-
-  const protectedViews = ()=> {
-    return(sessionToken === localStorage.getItem('token') ? <WorkoutIndex token={sessionToken}/>
-      :  <Auth updateToken={updateToken}/>) 
-  }
-  
   
   return (
     <div>   
